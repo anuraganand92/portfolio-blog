@@ -1,8 +1,8 @@
 import { DefaultSeo } from "next-seo";
 
 const config = {
-  title: "Samuel Kraft - Design engineer",
-  description: "I design & build interfaces",
+  title: "Anurag Anand",
+  description: "Software Engineer and UG at IIT Kharagpur",
   openGraph: {
     type: "website",
     locale: "en_US",

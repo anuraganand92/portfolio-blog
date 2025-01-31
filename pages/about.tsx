@@ -4,95 +4,48 @@ import { NextSeo } from "next-seo";
 import Link from "components/Link";
 import Section from "components/Section";
 import Workplaces from "components/Workplaces";
-import Gallery from "components/Gallery";
+
+import itsoLogo from "public/projects/itsoLogo.png";
+import synthaxLogo from "public/projects/synthax-logo.png";
+import avatar from "public/avatar.jpg";
 import { ActivityType } from "components/Activity";
 
-import raycastLogo from "public/projects/raycast-logo.jpeg";
-import bitrefillLogo from "public/projects/bitrefill-logo.png";
-import tracklibLogo from "public/projects/tracklib-logo.png";
-import styleroomLogo from "public/projects/styleroom-logo.png";
-import trailroutesLogo from "public/projects/trailroutes-logo.png";
-import notionLogo from "public/projects/notion-logo.png";
-import strengthLogo from "public/projects/strength-logo.png";
-import shapeLogo from "public/projects/shape-logo.png";
-import avatar from "public/avatar.png";
-
-import { getActivities, getActivity } from "lib/strava";
-
 export const connectLinks = [
-  { label: "𝕏", href: "https://x.com/samuelkraft" },
-  { label: "Email", href: "mailto:samuelkraft@me.com" },
-  { label: "GitHub", href: "https://github.com/samuelkraft" },
-  { label: "Strava", href: "https://strava.com/athletes/18364318" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/anurag-anand-929471250/" },
+  { label: "Email", href: "mailto:anuragsr26@gmail.com" },
+  { label: "GitHub", href: "https://github.com/anuraganand92" },
 ];
 
 const workplaces = [
   {
-    title: "Design Engineer",
-    description: "Raycast",
-    time: "2024 - Now",
-    imageSrc: raycastLogo,
-    link: "https://raycast.com",
+    title: "Research and Development Engineer Intern",
+    description: "ITSO",
+    time: "May 2024 - July 2024",
+    imageSrc: itsoLogo,
+    link: "https://itso.co.jp",
   },
   {
-    title: "Design Engineer",
-    description: "Bitrefill",
-    time: "2021 - 2024",
-    imageSrc: bitrefillLogo,
-    link: "https://bitrefill.com",
-  },
-  {
-    title: "Frontend Developer",
-    description: "Tracklib",
-    time: "2016 - 2021",
-    imageSrc: tracklibLogo,
-    link: "https://tracklib.com",
-  },
-  {
-    title: "Design Engineer",
-    description: "Styleroom",
-    time: "2013 - 2016",
-    imageSrc: styleroomLogo,
-    link: "https://styleroom.se/app",
+    title: "Software Engineer Intern",
+    description: "Synthax AI",
+    time: "November 2023 - December 2023",
+    imageSrc: synthaxLogo,
+    link: "https://synthax.ai",
   },
 ];
 
-const sideProjects = [
-  {
-    title: "Shape",
-    description: "A calendar for your workouts",
-    imageSrc: shapeLogo,
-    link: "https://shapecalendar.com",
-  },
-  {
-    title: "Trail Routes",
-    description: "Mapping platform built with react, mapbox, swiftUI",
-    imageSrc: trailroutesLogo,
-    link: "https://github.com/samuelkraft/routes",
-  },
-  {
-    title: "notion-blog-nextjs",
-    description: "Next.js starter repo with a blog powered by Notion",
-    imageSrc: notionLogo,
-    link: "https://github.com/samuelkraft/notion-blog-nextjs",
-  },
-  {
-    title: "Strength",
-    description: "iOS & WatchOS strength tracking app",
-    imageSrc: strengthLogo,
-    link: "https://samuelkraft.github.io/strength/",
-  },
-  {
-    title: "samuelkraft-next",
-    description: "The website you are looking at!",
-    imageSrc: avatar,
-    link: "https://github.com/samuelkraft/samuelkraft-next",
-  },
-];
+// const sideProjects = [
+//   {
+//     title: "Shape",
+//     description: "A calendar for your workouts",
+//     imageSrc: shapeLogo,
+//     link: "https://shapecalendar.com",
+//   },
+  
+// ];
 
-const seoTitle = "About | Samuel Kraft";
+const seoTitle = "About | Anurag Anand";
 const seoDesc =
-  "A designer/frontend developer hybrid that loves to build great products with delightful interfaces.";
+  "Student and Software Engineer particularly working in applied AI";
 
 export default function About({
   lastActivity,
@@ -108,22 +61,19 @@ export default function About({
           title: seoTitle,
           description: seoDesc,
           url: `https://samuelkraft.com/about/`,
-          site_name: "Samuel Kraft",
+          site_name: "Anurag Anand",
         }}
         twitter={{
           cardType: "summary_large_image",
         }}
       />
       <div className="flex flex-col gap-16 md:gap-24">
-        <div className="hidden sm:block">
-          <Gallery lastActivity={lastActivity} />
-        </div>
         <div className="-mb-8 sm:hidden animate-in">
           <Image
             src={avatar}
             width={48}
             height={48}
-            alt="avatar of Samuel Kraft"
+            alt="avatar of Anurag Anand"
           />
         </div>
         <div
@@ -133,19 +83,16 @@ export default function About({
           <Section heading="About me" headingAlignment="right">
             <div className="flex flex-col gap-6">
               <p>
-                <em className="font-semibold">Hi there!</em>&nbsp; I’m Samuel, a
-                designer/frontend developer hybrid that loves to build great
-                products with delightful interfaces.
+                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, UG student at IIT Kharagpur
+                and a Software Engineer particularly working in applied AI.
               </p>
               <p>
-                Currently working as a design engineer at{" "}
-                <Link href="https://raycast.com">Raycast</Link>. Before that I
-                worked at <Link href="https://bitrefill.com">Bitrefill</Link>{" "}
-                making living on crypto possible and music startup{" "}
-                <Link href="https://tracklib.com">Tracklib</Link>, the record
-                store for sampling.
+                My previous internship was at{" "}
+                <Link href="https://itso.co.jp">ITSO</Link> working on automating corporate solutions. 
+                Before that I interned at <Link href="https://synthax.ai">Synthax AI</Link>{" "}
+                working on creating AI-based healthcare consultation.{" "}
               </p>
-              <p>
+              {/* <p>
                 I love working in the realm between design and code. Some things
                 that makes me excited are CSS, Design Systems, Animation,
                 crafting excellent component apis and making interfaces feel fun
@@ -158,7 +105,7 @@ export default function About({
               <p>
                 Outside of work I’m obsessed with endurance sports and
                 travelling with my family.
-              </p>
+              </p> */}
             </div>
           </Section>
           <Section heading="Connect" headingAlignment="right">
@@ -172,48 +119,48 @@ export default function About({
           </Section>
           <Section heading="Work" headingAlignment="right">
             <div className="flex flex-col w-full gap-8">
-              <p>
-                {new Date().getFullYear() - 2013}+ years of experience working
-                in both design & engineering.
-              </p>
+              {/* <p>
+                {new Date().getFullYear() - 2025}+ years of experience working
+                in engineering.
+              </p> */}
               <Workplaces items={workplaces} />
             </div>
           </Section>
-          <Section heading="Side projects" headingAlignment="right">
+          {/* <Section heading="Side projects" headingAlignment="right">
             <div className="flex flex-col w-full gap-8">
               <p>I enjoy hacking on the side.</p>
               <Workplaces items={sideProjects} />
             </div>
-          </Section>
+          </Section> */}
         </div>
       </div>
     </>
   );
 }
 
-export const getStaticProps = async () => {
-  const activities: ActivityType[] = await getActivities();
-  const lastNonVirtualActivityWithPhoto = activities
-    .filter((activity) =>
-      [
-        "Run",
-        "TrailRun",
-        "Bike",
-        "Ride",
-        "Swim",
-        "Hike",
-        "GravelRide",
-        "NordicSki",
-      ].includes(activity.sport_type)
-    )
-    .find((activity) => activity.total_photo_count > 0);
-  const activity = await getActivity(
-    lastNonVirtualActivityWithPhoto?.id as number
-  );
-  return {
-    props: {
-      lastActivity: activity,
-    },
-    revalidate: 3600,
-  };
-};
+// export const getStaticProps = async () => {
+//   const activities: ActivityType[] = await getActivities();
+//   const lastNonVirtualActivityWithPhoto = activities
+//     .filter((activity) =>
+//       [
+//         "Run",
+//         "TrailRun",
+//         "Bike",
+//         "Ride",
+//         "Swim",
+//         "Hike",
+//         "GravelRide",
+//         "NordicSki",
+//       ].includes(activity.sport_type)
+//     )
+//     .find((activity) => activity.total_photo_count > 0);
+//   const activity = await getActivity(
+//     lastNonVirtualActivityWithPhoto?.id as number
+//   );
+//   return {
+//     props: {
+//       lastActivity: activity,
+//     },
+//     revalidate: 3600,
+//   };
+// };

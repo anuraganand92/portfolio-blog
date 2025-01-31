@@ -58,7 +58,7 @@ export default function Post({ post, related }: PostProps) {
 
       <div className="flex flex-col gap-20">
         <article>
-          {post.slug === "spring-parallax-framer-motion-guide" ? (
+          {/* {post.slug === "spring-parallax-framer-motion-guide" ? (
             <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-xl">
               <div className="absolute inset-0">
                 <Parallax offset={100}>
@@ -91,7 +91,7 @@ export default function Post({ post, related }: PostProps) {
               className="w-[calc(100%+32px)] -ml-4 md:rounded-xl max-w-none border  border-primary"
               priority
             />
-          )}
+          )} */}
           <div className="h-8" />
           <div className="flex flex-col gap-3">
             <h1 className="text-2xl font-semibold">{post.title}</h1>
@@ -116,8 +116,7 @@ export default function Post({ post, related }: PostProps) {
         <div className="flex flex-col gap-4">
           <h3 className="text-xl">Subscribe</h3>
           <p className="text-secondary">
-            Get an email when i write new posts. Learn animation techniques,
-            CSS, design systems and more
+            Get an email when I write new posts. Learn deep level technical stuff, or some applied AI :)
           </p>
           <NewsletterInput />
         </div>

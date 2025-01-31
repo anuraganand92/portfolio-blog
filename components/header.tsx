@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import avatar from "public/avatar.png";
+import avatar from "public/avatar.jpg";
 import NavLink from "./NavLink";
 import ThemeSwitcher from "./ThemeSwitcher";
 
@@ -17,7 +17,7 @@ export default function Header() {
         <Link href="/" className="hidden shrink-0 sm:block">
           <Image
             src={avatar}
-            alt="Samuel Kraft avatar"
+            alt="Anurag Anand avatar"
             className="w-8 h-8"
             priority
           />

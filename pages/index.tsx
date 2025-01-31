@@ -20,15 +20,24 @@ export default function Home({ posts, projects }: HomeProps) {
     <>
       <div className="flex flex-col gap-20 md:gap-28">
         <div>
-          <h1 className="animate-in">Samuel Kraft</h1>
+          <h1 className="animate-in">Anurag Anand</h1>
           <p
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            I design & build interfaces
+            I am a student at IIT Kharagpur and a software engineer particularly working in applied AI.
+          </p>
+          <p
+            className="text-secondary animate-in"
+            style={{ "--index": 1 } as React.CSSProperties}
+          >
+                          My previous internship was at{" "}
+                          <Link href="https://itso.co.jp">ITSO</Link> working on automating corporate solutions. 
+                          Before that I interned at <Link href="https://synthax.ai">Synthax AI</Link>{" "}
+                          working on creating AI-based healthcare consultation.{" "}
           </p>
         </div>
-        <div
+        {/* <div
           className="flex flex-col gap-4 animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
         >
@@ -55,7 +64,7 @@ export default function Home({ posts, projects }: HomeProps) {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
         <div
           className="flex flex-col items-start gap-8 animate-in"
           style={{ "--index": 3 } as React.CSSProperties}
