@@ -13,7 +13,7 @@ function Raycast() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ type: "spring", duration: 2, bounce: 0.35 }}
         >
-          <button
+          {/* <button
             className={styles.key}
             onClick={() =>
               (window.location.href =
@@ -166,7 +166,7 @@ function Raycast() {
               <div className={styles.glow3}></div>
               <div className={styles.glow4}></div>
             </motion.div>
-          </button>
+          </button> */}
         </motion.div>
       </div>
     </main>
@@ -177,7 +177,7 @@ export default function RaycastPage() {
   const title = "Raycast";
   const seoTitle = `${title} | Samuel Kraft`;
   const desc = `I'm joining Raycast as a design engineer`;
-  const url = `https://samuelkraft.com/playground/raycast`;
+  const url = `https://anuraganand.vercel.app/playground/raycast`;
   return (
     <>
       <NextSeo

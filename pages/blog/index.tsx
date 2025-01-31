@@ -31,7 +31,7 @@ export default function Blog({ posts }: BlogProps) {
         description={seoDesc}
         openGraph={{
           title: seoTitle,
-          url: `https://samuelkraft.com/blog/`,
+          url: `https://anuraganand.vercel.app/blog/`,
           description: seoDesc,
           site_name: "Samuel Kraft",
         }}

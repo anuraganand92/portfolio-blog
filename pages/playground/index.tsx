@@ -22,7 +22,7 @@ export default function Playground() {
         description={seoDesc}
         openGraph={{
           title: seoTitle,
-          url: `https://samuelkraft.com/playground/`,
+          url: `https://anuraganand.vercel.app/playground/`,
           description: seoDesc,
           site_name: "Samuel Kraft",
         }}

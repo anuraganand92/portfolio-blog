@@ -9,9 +9,9 @@ import Link from "components/Link";
 
 export default function NewsletterPage() {
   const { query } = useRouter();
-  const seoTitle = "Newsletter | Samuel Kraft";
+  const seoTitle = "Newsletter | Anurag Anand";
   const seoDesc =
-    "A newsletter in the realm between design & development. Learn animations, CSS, web development tips & tricks and creating delightful and useful interfaces!";
+    "A newsletter in the realm of software engineering. I write about deep level tech stuff and some in applied AI.";
 
   return (
     <div className="min-h-screen">
@@ -20,9 +20,9 @@ export default function NewsletterPage() {
         description={seoDesc}
         openGraph={{
           title: seoTitle,
-          url: `https://samuelkraft.com/newsletter/`,
+          url: `https://anuraganand.vercel.app/newsletter/`,
           description: seoDesc,
-          site_name: "Samuel Kraft",
+          site_name: "Anurag Anand",
         }}
         twitter={{
           cardType: "summary_large_image",
@@ -48,8 +48,7 @@ export default function NewsletterPage() {
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            Get an email when i write new posts. Learn animation techniques,
-            CSS, design systems and more
+            Get an email when I write new posts. I write about deep level tech stuff, mostly in software engineering.
           </p>
           <div
             className="animate-in"

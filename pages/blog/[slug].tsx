@@ -21,9 +21,9 @@ type PostProps = {
 };
 
 export default function Post({ post, related }: PostProps) {
-  const seoTitle = `${post.title} | Samuel Kraft`;
+  const seoTitle = `${post.title} | Anurag Anand`;
   const seoDesc = `${post.summary}`;
-  const url = `https://samuelkraft.com/blog/${post.slug}`;
+  const url = `https://anuraganand.vercel.app/blog/${post.slug}`;
   const Component = useMDXComponent(post.body.code);
 
   return (
@@ -39,7 +39,7 @@ export default function Post({ post, related }: PostProps) {
           images: [
             {
               url: post.og
-                ? `https://samuelkraft.com${post.og}`
+                ? `https://anuraganand.vercel.app${post.og}`
                 : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(
                     post.title
                   )}?desc=${encodeURIComponent(seoDesc)}&theme=dark.png`,
@@ -51,7 +51,7 @@ export default function Post({ post, related }: PostProps) {
           article: {
             publishedTime: post.publishedAt,
             modifiedTime: post.updatedAt,
-            authors: ["https://samuelkraft.com"],
+            authors: ["https://anuraganand.vercel.app"],
           },
         }}
       />

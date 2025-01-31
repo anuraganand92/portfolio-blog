@@ -20,7 +20,7 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
 
   const seoTitle = `${tag} | Samuel Kraft`;
   const seoDesc = `Posts &amp; tutorials about ${tag}`;
-  const url = `https://samuelkraft.com/blog/tag/${tag}`;
+  const url = `https://anuraganand.vercel.app/blog/tag/${tag}`;
 
   return (
     <>

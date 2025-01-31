@@ -6,11 +6,11 @@ const config = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://samuelkraft.com",
+    url: "https://anuraganand.vercel.app",
     site_name: "Samuel Kraft",
     images: [
       {
-        url: "https://samuelkraft.com/og.jpg",
+        url: "https://anuraganand.vercel.app/og.jpg",
         alt: "Samuel Kraft",
       },
     ],

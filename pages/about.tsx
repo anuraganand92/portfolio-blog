@@ -60,7 +60,7 @@ export default function About({
         openGraph={{
           title: seoTitle,
           description: seoDesc,
-          url: `https://samuelkraft.com/about/`,
+          url: `https://anuraganand.vercel.app/about/`,
           site_name: "Anurag Anand",
         }}
         twitter={{

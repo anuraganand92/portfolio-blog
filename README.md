@@ -1,4 +1,4 @@
-# samuelkraft.com
+# anuraganand.vercel.app
 
 My personal website/portfolio/blog.
 
