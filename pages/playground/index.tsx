@@ -3,7 +3,7 @@ import Section from "components/Section";
 import { formatDate } from "lib/formatdate";
 import Link from "components/Link";
 
-const seoTitle = "Playground | Samuel Kraft";
+const seoTitle = "Playground | Anurag Anand";
 const seoDesc = "Experiments, craft and other fun stuff!";
 
 const playgrounds = [
@@ -24,7 +24,7 @@ export default function Playground() {
           title: seoTitle,
           url: `https://anuraganand.vercel.app/playground/`,
           description: seoDesc,
-          site_name: "Samuel Kraft",
+          site_name: "Anurag Anand",
         }}
         twitter={{
           cardType: "summary_large_image",

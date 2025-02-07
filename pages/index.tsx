@@ -18,23 +18,27 @@ type HomeProps = {
 export default function Home({ posts, projects }: HomeProps) {
   return (
     <>
-      <div className="flex flex-col gap-20 md:gap-28">
+      <div className="flex flex-col gap-16 md:gap-24"> {/* Reduced gap */}
         <div>
-          <h1 className="animate-in">Anurag Anand</h1>
+          <h1 className="animate-in text-4xl">Hi! I&apos;m Anurag</h1>
+          <br/>
           <p
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            I am a student at IIT Kharagpur and a software engineer particularly working in applied AI.
+            I am a student at IIT Kharagpur and a software engineer. 
+            My work focuses on AI-driven solutions, and I have a strong interest in high-performance 
+            software engineering, particularly in C++ for low-latency systems and Python for AI and automation. 
           </p>
+          <br/>
           <p
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-                          My previous internship was at{" "}
-                          <Link href="https://itso.co.jp">ITSO</Link> working on automating corporate solutions. 
-                          Before that I interned at <Link href="https://synthax.ai">Synthax AI</Link>{" "}
-                          working on creating AI-based healthcare consultation.{" "}
+            My previous internship was at{" "}
+            <Link href="https://itso.co.jp">ITSO Japan</Link> working on automating corporate solutions. 
+            Before that I interned at <Link href="https://synthax.ai">Synthax AI</Link>{" "}
+            working on creating AI-based healthcare consultation.{" "}
           </p>
         </div>
         {/* <div
@@ -66,7 +70,7 @@ export default function Home({ posts, projects }: HomeProps) {
           </ul>
         </div> */}
         <div
-          className="flex flex-col items-start gap-8 animate-in"
+          className="flex flex-col items-start gap-4 animate-in"
           style={{ "--index": 3 } as React.CSSProperties}
         >
           <h2>Selected posts</h2>

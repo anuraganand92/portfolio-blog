@@ -18,16 +18,16 @@ export const connectLinks = [
 
 const workplaces = [
   {
-    title: "Research and Development Engineer Intern",
+    title: "R&D Engineer Intern",
     description: "ITSO",
-    time: "May 2024 - July 2024",
+    time: "May 2024 - Jul 2024",
     imageSrc: itsoLogo,
     link: "https://itso.co.jp",
   },
   {
     title: "Software Engineer Intern",
     description: "Synthax AI",
-    time: "November 2023 - December 2023",
+    time: "Nov 2023 - Dec 2023",
     imageSrc: synthaxLogo,
     link: "https://synthax.ai",
   },
@@ -45,7 +45,7 @@ const workplaces = [
 
 const seoTitle = "About | Anurag Anand";
 const seoDesc =
-  "Student and Software Engineer particularly working in applied AI";
+  "Student at IIT Kharagpur and Software Engineer particularly working in applied AI and low-latency systems.";
 
 export default function About({
   lastActivity,
@@ -77,35 +77,28 @@ export default function About({
           />
         </div>
         <div
-          className="flex flex-col gap-16 animate-in sm:animate-none md:gap-24"
+          className="flex flex-col gap-16 animate-in sm:animate-none md:gap-12"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Section heading="About me" headingAlignment="right">
             <div className="flex flex-col gap-6">
               <p>
-                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, UG student at IIT Kharagpur
-                and a Software Engineer particularly working in applied AI.
+                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, a student at IIT Kharagpur and a software 
+                engineer specializing in applied AI. I focus on building intelligent, scalable AI solutions, 
+                particularly in LLMs, deep learning, and real-world AI applications. I have worked extensively
+                 with Python, developing, optimizing, and deploying large-scale AI systems.
               </p>
               <p>
-                My previous internship was at{" "}
-                <Link href="https://itso.co.jp">ITSO</Link> working on automating corporate solutions. 
-                Before that I interned at <Link href="https://synthax.ai">Synthax AI</Link>{" "}
-                working on creating AI-based healthcare consultation.{" "}
-              </p>
-              {/* <p>
-                I love working in the realm between design and code. Some things
-                that makes me excited are CSS, Design Systems, Animation,
-                crafting excellent component apis and making interfaces feel fun
-                and human.
+                Beyond AI, I’m passionate about high-performance and low-latency software engineering, 
+                especially in C++. I explore performance optimization, memory management, and real-time
+                 systems, frequently sharing my insights through blogs. While I’ve worked on 
+                 cutting-edge AI projects, my long-term goal is to specialize in low-latency 
+                 system development.
               </p>
               <p>
-                I grew up in Nacka just outside of Stockholm, Sweden and come
-                from a background of studying Photography.
+                If you share similar interests or have exciting ideas to discuss, feel free to 
+                connect!
               </p>
-              <p>
-                Outside of work I’m obsessed with endurance sports and
-                travelling with my family.
-              </p> */}
             </div>
           </Section>
           <Section heading="Connect" headingAlignment="right">
@@ -117,7 +110,18 @@ export default function About({
               ))}
             </ul>
           </Section>
-          <Section heading="Work" headingAlignment="right">
+          <Section heading="Experience" headingAlignment="right">
+            <div className="flex flex-col gap-6">
+              <p>
+                My previous internship was at{" "}
+                <Link href="https://itso.co.jp">ITSO</Link> working on automating corporate solutions. 
+                Before that I interned at <Link href="https://synthax.ai">Synthax AI</Link>{" "}
+                working on creating AI-based healthcare consultation.{" "}
+              </p>
+            </div>
+          </Section>
+          
+          <Section heading="" headingAlignment="right">
             <div className="flex flex-col w-full gap-8">
               {/* <p>
                 {new Date().getFullYear() - 2025}+ years of experience working

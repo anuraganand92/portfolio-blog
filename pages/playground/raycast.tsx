@@ -175,7 +175,7 @@ function Raycast() {
 
 export default function RaycastPage() {
   const title = "Raycast";
-  const seoTitle = `${title} | Samuel Kraft`;
+  const seoTitle = `${title} | Anurag Anand`;
   const desc = `I'm joining Raycast as a design engineer`;
   const url = `https://anuraganand.vercel.app/playground/raycast`;
   return (

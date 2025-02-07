@@ -33,7 +33,7 @@ export default function Blog({ posts }: BlogProps) {
           title: seoTitle,
           url: `https://anuraganand.vercel.app/blog/`,
           description: seoDesc,
-          site_name: "Samuel Kraft",
+          site_name: "Anurag Anand",
         }}
         twitter={{
           cardType: "summary_large_image",

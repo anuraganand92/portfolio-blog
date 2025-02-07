@@ -40,13 +40,13 @@ export default function Post({ post, related }: PostProps) {
             {
               url: post.og
                 ? `https://anuraganand.vercel.app${post.og}`
-                : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(
+                : `https://og-image.anuraganand.vercel.app/${encodeURIComponent(
                     post.title
                   )}?desc=${encodeURIComponent(seoDesc)}&theme=dark.png`,
               alt: post.title,
             },
           ],
-          site_name: "Samuel Kraft",
+          site_name: "Anurag Anand",
           type: "article",
           article: {
             publishedTime: post.publishedAt,

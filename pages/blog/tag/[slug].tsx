@@ -18,7 +18,7 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
   const { slug } = query as { slug: string };
   const tag = slug.replace("-", " ");
 
-  const seoTitle = `${tag} | Samuel Kraft`;
+  const seoTitle = `${tag} | Anurag Anand`;
   const seoDesc = `Posts &amp; tutorials about ${tag}`;
   const url = `https://anuraganand.vercel.app/blog/tag/${tag}`;
 

@@ -221,7 +221,7 @@ const items = [
 
 export default function RadialMenuPage() {
   const title = "Radial Menu";
-  const seoTitle = `${title} | Samuel Kraft`;
+  const seoTitle = `${title} | Anurag Anand`;
   const desc = `Fun interaction from Pinterest on iOS built with Framer Motion`;
   const url = `https://anuraganand.vercel.app/playground/radial-menu`;
   return (

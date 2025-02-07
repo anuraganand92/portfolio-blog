@@ -7,11 +7,11 @@ const config = {
     type: "website",
     locale: "en_US",
     url: "https://anuraganand.vercel.app",
-    site_name: "Samuel Kraft",
+    site_name: "Anurag Anand",
     images: [
       {
         url: "https://anuraganand.vercel.app/og.jpg",
-        alt: "Samuel Kraft",
+        alt: "Anurag Anand",
       },
     ],
   },

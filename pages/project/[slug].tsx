@@ -14,7 +14,7 @@ type ProjectProps = {
 };
 
 export default function Project({ project, rest }: ProjectProps) {
-  const seoTitle = `${project.title} Case Study | Samuel Kraft`;
+  const seoTitle = `${project.title} Case Study | Anurag Anand`;
   const seoDesc = `${project.description}`;
   const url = `https://anuraganand.vercel.app/project/${project.slug}`;
   const Component = useMDXComponent(project.body.code);

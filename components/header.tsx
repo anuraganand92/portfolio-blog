@@ -15,12 +15,7 @@ export default function Header() {
     <header className="sticky top-0 z-10 main-header backdrop-blur-md bg-header">
       <nav className="px-4 md:px-6 py-2 max-w-[700px] mx-auto flex justify-between items-center ">
         <Link href="/" className="hidden shrink-0 sm:block">
-          <Image
-            src={avatar}
-            alt="Anurag Anand avatar"
-            className="w-8 h-8"
-            priority
-          />
+          <span className="text-l font-bold">Anurag Anand</span> {/* Replaced Image with text */}
         </Link>
         <ul className="flex items-center gap-6">
           {links.map((link) => (
