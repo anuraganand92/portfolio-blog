@@ -28,7 +28,7 @@ export default function Post({ post, mousePosition }: PostProps) {
   return (
     <li className="py-2.5 group">
       <div className="transition-opacity">
-        {image && mousePosition && (
+        {/* {image && mousePosition && (
           <motion.div
             animate={{
               top: mousePosition.y - imageHeight - imageOffset,
@@ -46,7 +46,7 @@ export default function Post({ post, mousePosition }: PostProps) {
               height={imageHeight}
             />
           </motion.div>
-        )}
+        )} */}
         <Section heading={formatDate(publishedAt)}>
           <Link href={`/blog/${slug}`}>
             {title}
