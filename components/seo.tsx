@@ -10,14 +10,14 @@ const config = {
     site_name: "Anurag Anand",
     images: [
       {
-        url: "https://anuraganand.vercel.app/og.jpg",
+        url: "https://anuraganand.vercel.app/og.png",
         alt: "Anurag Anand",
       },
     ],
   },
-  twitter: {
-    handle: "@samuelkraft",
-    site: "@samuelkraft",
+  linkedin: {
+    handle: "Anurag Anand",
+    url: "https://www.linkedin.com/in/anurag-anand-929471250/",
     cardType: "summary_large_image",
   },
 };
