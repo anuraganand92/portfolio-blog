@@ -77,7 +77,7 @@ export default function About({
           />
         </div>
         <div
-          className="flex flex-col gap-16 animate-in sm:animate-none md:gap-12"
+          className="flex flex-col gap-16 animate-in md:gap-12"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Section heading="About me" headingAlignment="right">
