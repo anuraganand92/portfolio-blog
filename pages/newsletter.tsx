@@ -11,7 +11,7 @@ export default function NewsletterPage() {
   const { query } = useRouter();
   const seoTitle = "Newsletter | Anurag Anand";
   const seoDesc =
-    "A newsletter in the realm of software engineering. I write about deep level tech stuff and some in applied AI.";
+    "A newsletter in the realm of software engineering. I write about deep level tech stuff particularly in applied AI.";
 
   return (
     <div className="min-h-screen">
@@ -48,7 +48,7 @@ export default function NewsletterPage() {
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            Get an email when I write new posts. I write about deep level tech stuff, mostly in software engineering.
+            Get an email when I write new posts. I write about deep level tech stuff, mostly in software engineering and applied AI.
           </p>
           <div
             className="animate-in"

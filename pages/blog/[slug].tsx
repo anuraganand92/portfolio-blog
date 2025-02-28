@@ -3,17 +3,18 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
+import { useEffect, useState } from "react";
 
 import { formatDate } from "lib/formatdate";
 import HitCounter from "components/hitcounter";
 import PostList from "components/postlist";
-import Link from "components/Link";
 import Image from "next/image";
 import NewsletterInput from "components/NewsletterInput";
 import Tags from "components/tags";
 import LikeButton from "components/likebutton";
 import MDXComponents from "components/MDXComponents";
 import Parallax from "components/blog/parallax";
+import Link from "next/link";
 
 type PostProps = {
   post: PostType;
@@ -56,7 +57,7 @@ export default function Post({ post, related }: PostProps) {
         }}
       />
 
-      <div className="flex flex-col gap-20">
+      <div className="flex flex-col gap-20 animate-in">
         <article>
           {/* {post.slug === "spring-parallax-framer-motion-guide" ? (
             <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-xl">
@@ -93,7 +94,7 @@ export default function Post({ post, related }: PostProps) {
             />
           )} */}
           <div className="h-8" />
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 animate-in">
             <h1 className="text-2xl font-semibold">{post.title}</h1>
             <p className="text-secondary">
               <time dateTime={post.publishedAt}>
@@ -104,19 +105,19 @@ export default function Post({ post, related }: PostProps) {
             </p>
           </div>
           <div className="h-8" />
-          <div className="prose prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold">
+          <div className="prose prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold animate-in">
             <Component components={MDXComponents} />
           </div>
         </article>
 
-        <LikeButton slug={post.slug} />
+        {/* <LikeButton slug={post.slug} /> */}
 
         <Tags tags={post.tags} />
 
         <div className="flex flex-col gap-4">
           <h3 className="text-xl">Subscribe</h3>
           <p className="text-secondary">
-            Get an email when I write new posts. Learn deep level technical stuff, or some applied AI :)
+            Get an email when I write new posts. Learn deep level technical stuff, or some applied AI
           </p>
           <NewsletterInput />
         </div>
@@ -127,7 +128,7 @@ export default function Post({ post, related }: PostProps) {
             <div className="will-change-transform">
               <PostList posts={related} />
             </div>
-            <Link href="/blog" underline>
+            <Link href="/blog">
               ← See all
             </Link>
           </div>

@@ -26,9 +26,9 @@ export default function Home({ posts, projects }: HomeProps) {
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            I am a student at IIT Kharagpur and a software engineer. 
-            My work focuses on AI-driven solutions, and I have a strong interest in high-performance 
-            software engineering, particularly in C++ for low-latency systems and Python for AI and automation. 
+            I am a student at IIT Kharagpur and a software engineer focused on applied AI, 
+            with experience particularly in NLP and LLMs, and a strong interest in AI research and 
+            high-performance computing.
           </p>
           <br/>
           <p

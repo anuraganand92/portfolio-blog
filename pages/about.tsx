@@ -45,7 +45,7 @@ const workplaces = [
 
 const seoTitle = "About | Anurag Anand";
 const seoDesc =
-  "Student at IIT Kharagpur and Software Engineer particularly working in applied AI and low-latency systems.";
+  "Student at IIT Kharagpur and Software Engineer particularly working in applied AI";
 
 export default function About({
   lastActivity,
@@ -89,11 +89,10 @@ export default function About({
                  with Python, developing, optimizing, and deploying large-scale AI systems.
               </p>
               <p>
-                Beyond AI, I’m passionate about high-performance and low-latency software engineering, 
-                especially in C++. I explore performance optimization, memory management, and real-time
-                 systems, frequently sharing my insights through blogs. While I’ve worked on 
-                 cutting-edge AI projects, my long-term goal is to specialize in low-latency 
-                 system development.
+                My passion lies in advancing AI research and exploring novel approaches in natural 
+                language processing. I actively engage in experiments and collaborations to push the
+                 boundaries of what AI can achieve, constantly seeking to refine and optimize model 
+                 performance for diverse challenges. 
               </p>
               <p>
                 If you share similar interests or have exciting ideas to discuss, feel free to 

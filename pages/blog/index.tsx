@@ -9,7 +9,7 @@ import { IconSearch } from "components/Icons";
 
 const seoTitle = "Blog | Anurag";
 const seoDesc =
-  "I write about deep level technical stuff, mostly in software engineering";
+  "I write about deep level technical stuff, mostly in software engineering and applied AI";
 
 type BlogProps = {
   posts: Post[];
@@ -47,7 +47,7 @@ export default function Blog({ posts }: BlogProps) {
               className="text-secondary animate-in"
               style={{ "--index": 1 } as React.CSSProperties}
             >
-              I write about deep level technical stuff, mostly in software engineering
+              I write about deep level technical stuff, mostly in software engineering and applied AI
             </p>
           </div>
           <div
