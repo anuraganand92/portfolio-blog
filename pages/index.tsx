@@ -27,7 +27,7 @@ export default function Home({ posts, projects }: HomeProps) {
             style={{ "--index": 1 } as React.CSSProperties}
           >
             I am a student at IIT Kharagpur and a software engineer focused on applied AI, 
-            with experience particularly in NLP and LLMs, and a strong interest in AI research and 
+            with experience particularly in NLP and LLMs, with strong interest in AI research and 
             high-performance computing.
           </p>
           <br/>
