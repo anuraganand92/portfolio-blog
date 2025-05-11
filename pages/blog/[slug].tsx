@@ -99,7 +99,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = allPosts.find((p) => p.slug === params?.slug);
   const related = allPosts
     .filter((p) => p.slug !== params?.slug)
-    .filter((p) => p.tags?.some((tag) => post?.tags?.includes(tag)))
+    .filter((p) => p.tags?.some((tag: any) => post?.tags?.includes(tag)))
     .slice(0, 3)
     .map((p) => pick(p, ["slug", "title", "summary", "publishedAt", "image"]));
 
