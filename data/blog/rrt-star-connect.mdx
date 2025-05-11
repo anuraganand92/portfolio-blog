@@ -1,0 +1,187 @@
+---
+title: 'RRT* Connect: A Fast Optimal Motion Planning Algorithm'
+publishedAt: '2025-03-20'
+summary: 'An in-depth exploration of RRT* Connect, a hybrid motion planning algorithm combining optimality and speed.'
+tags: ["Motion Planning", "Robotics", "Algorithms", "Optimization", "RRT"]
+---
+
+## Introduction
+
+In robotics and autonomous systems, motion planning refers to computing a path from a starting configuration to a goal without colliding with obstacles. Sampling-based algorithms such as **Rapidly-exploring Random Trees (RRT)** are popular for solving these problems in high-dimensional spaces due to their efficiency and simplicity.
+
+However, the standard RRT algorithm is not guaranteed to find the shortest or most efficient path. **RRT\*** (RRT-Star) enhances RRT by providing optimal solutions over time through a process called **rewiring**. **RRT Connect** accelerates planning by growing trees from both the start and goal configurations. **RRT\* Connect** combines the optimality of RRT\* and the efficiency of RRT Connect, making it one of the most practical and powerful motion planners available.
+
+---
+
+## Background
+
+### RRT
+
+* Constructs a tree rooted at the start node by sampling random configurations.
+* Expands greedily toward each random sample.
+* Finds feasible paths quickly but not optimal ones.
+
+### RRT\*
+
+* Similar to RRT but improves the tree by rewiring to minimize cost (e.g., path length).
+* Guarantees asymptotic optimality with enough samples.
+* Slower than RRT due to the cost optimization overhead.
+
+### RRT Connect
+
+* Grows two trees: one from the start and one from the goal.
+* Expands each tree aggressively toward random samples and attempts to connect the trees.
+* Fast and efficient but doesn't optimize the path.
+
+### RRT\* Connect
+
+* Uses bidirectional tree growth from both start and goal.
+* Applies cost-based rewiring to both trees like RRT\*.
+* Attempts to connect the trees during each iteration.
+* Offers fast convergence and guarantees optimality over time.
+
+---
+
+## RRT\* Connect Algorithm
+
+### Core Concepts
+
+**1. Trees from Both Ends:**
+Two trees grow simultaneously — one from the start, one from the goal. Each tree expands toward a random sample, and they attempt to connect when close enough.
+
+**2. Steering:**
+Each new node is created by stepping from a nearby node toward a sampled point by a fixed step size (delta). This avoids adding distant or infeasible nodes.
+
+**3. Rewiring:**
+When a new node is added, the algorithm checks if it can connect nearby nodes more efficiently. If so, it rewires the tree to use the better path.
+
+**4. Connection Attempt:**
+When a new node is added to one tree, the other tree tries to connect to it by extending its own nodes in that direction.
+
+### Code Skeleton (Python-style Pseudocode)
+
+```python
+def RRT_Star_Connect(x_init, x_goal, max_iter, delta):
+    T_start = initialize_tree(x_init)
+    T_goal = initialize_tree(x_goal)
+
+    for i in range(max_iter):
+        x_rand = sample_random()
+
+        # Alternate tree expansion
+        for T_a, T_b in [(T_start, T_goal), (T_goal, T_start)]:
+            x_nearest = nearest_node(T_a, x_rand)
+            x_new = steer(x_nearest, x_rand, delta)
+
+            if collision_free(x_nearest, x_new):
+                neighbors = get_neighbors(T_a, x_new)
+                x_min = choose_best_parent(T_a, x_new, neighbors)
+                T_a.add_node(x_new, parent=x_min)
+
+                rewire(T_a, x_new, neighbors)
+
+                if connect_trees(T_a, T_b, x_new, delta):
+                    return construct_path(T_start, T_goal)
+
+    return None
+```
+
+---
+
+## Key Components Explained
+
+### Sampling
+
+Random configurations are drawn uniformly from the configuration space to explore feasible areas.
+
+```python
+def sample_random():
+    return np.random.uniform(low=space_min, high=space_max)
+```
+
+### Nearest Node Search
+
+Finds the existing node in the tree closest to the sampled point.
+
+```python
+def nearest_node(tree, x_rand):
+    return min(tree.nodes, key=lambda node: distance(node, x_rand))
+```
+
+### Steering
+
+Limits the expansion to a fixed step size for safety and resolution.
+
+```python
+def steer(x_nearest, x_rand, delta):
+    direction = (x_rand - x_nearest) / np.linalg.norm(x_rand - x_nearest)
+    return x_nearest + direction * delta
+```
+
+### Best Parent Selection
+
+Among nearby nodes, selects the one that offers the lowest cost to the new node.
+
+```python
+def choose_best_parent(tree, x_new, neighbors):
+    best = x_nearest
+    min_cost = cost(x_nearest) + distance(x_nearest, x_new)
+    for x_near in neighbors:
+        new_cost = cost(x_near) + distance(x_near, x_new)
+        if collision_free(x_near, x_new) and new_cost < min_cost:
+            best = x_near
+            min_cost = new_cost
+    return best
+```
+
+### Rewiring
+
+After adding a new node, checks nearby nodes to see if their cost can be reduced by connecting through the new node.
+
+```python
+def rewire(tree, x_new, neighbors):
+    for x_near in neighbors:
+        new_cost = cost(x_new) + distance(x_new, x_near)
+        if new_cost < cost(x_near) and collision_free(x_new, x_near):
+            tree.rewire(x_near, new_parent=x_new)
+```
+
+### Connecting Trees
+
+Attempts to grow the other tree toward the newly added node. If successful, the algorithm terminates with a valid path.
+
+```python
+def connect_trees(T_a, T_b, x_new, delta):
+    x_nearest = nearest_node(T_b, x_new)
+    x_attempt = steer(x_nearest, x_new, delta)
+    if collision_free(x_nearest, x_attempt):
+        T_b.add_node(x_attempt, parent=x_nearest)
+        return True
+    return False
+```
+
+---
+
+## Practical Notes
+
+* **Goal Biasing:** Occasionally sample the goal to help the tree reach it faster.
+* **Obstacle Checking:** Efficient collision checking is crucial for performance.
+* **Nearest Neighbor Search:** Use spatial data structures like KD-trees to improve lookup speed.
+* **Incremental Execution:** Can be run in real-time with early termination.
+
+---
+
+## Applications
+
+* Robot arm path planning in constrained spaces
+* Autonomous vehicle navigation
+* Drone flight path optimization
+* Character motion in games and simulations
+
+---
+
+## References
+
+1. Karaman, S., & Frazzoli, E. (2011). *Sampling-based Algorithms for Optimal Motion Planning*. IJRR.
+2. Kuffner, J. J., & LaValle, S. M. (2000). *RRT-Connect: An Efficient Approach to Single-Query Path Planning*. ICRA.
+3. LaValle, S. M. (2006). *Planning Algorithms*. Cambridge University Press.

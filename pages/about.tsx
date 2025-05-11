@@ -7,6 +7,7 @@ import Workplaces from "components/Workplaces";
 
 import itsoLogo from "public/projects/itsoLogo.png";
 import synthaxLogo from "public/projects/synthax-logo.png";
+import amazonLogo from "public/projects/amazon-logo.png";
 import avatar from "public/avatar.jpg";
 import { ActivityType } from "components/Activity";
 
@@ -17,6 +18,13 @@ export const connectLinks = [
 ];
 
 const workplaces = [
+  {
+    title: "Applied Scientist Intern",
+    description: "Amazon",
+    time: "May 2025 - Present",
+    imageSrc: amazonLogo,
+    link: "https://amazon.com",
+  },
   {
     title: "R&D Engineer Intern",
     description: "ITSO",
@@ -112,9 +120,10 @@ export default function About({
           <Section heading="Experience" headingAlignment="right">
             <div className="flex flex-col gap-6">
               <p>
+                I am currently interning at <Link href="https://amazon.com">Amazon</Link> as an Applied Scientist.
                 My previous internship was at{" "}
                 <Link href="https://itso.co.jp">ITSO</Link> working on automating corporate solutions. 
-                Before that I interned at <Link href="https://synthax.ai">Synthax AI</Link>{" "}
+                Before that I interned at <Link href="https://synthax.ai">Synthax</Link>{" "}
                 working on creating AI-based healthcare consultation.{" "}
               </p>
             </div>

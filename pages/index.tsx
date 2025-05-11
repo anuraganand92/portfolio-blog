@@ -35,40 +35,12 @@ export default function Home({ posts, projects }: HomeProps) {
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            My previous internship was at{" "}
+            I am currently interning at <Link href="https://amazon.com">Amazon</Link> as an Applied Scientist. My previous internship was at{" "}
             <Link href="https://itso.co.jp">ITSO Japan</Link> working on automating corporate solutions. 
-            Before that I interned at <Link href="https://synthax.ai">Synthax AI</Link>{" "}
+            Before that I interned at <Link href="https://synthax.ai">Synthax</Link>{" "}
             working on creating AI-based healthcare consultation.{" "}
           </p>
         </div>
-        {/* <div
-          className="flex flex-col gap-4 animate-in"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          <h2>Selected projects</h2>
-          <ul className="flex flex-col gap-16">
-            {projects.map((project) => (
-              <li key={project.title}>
-                <Section heading={project.time}>
-                  <div className="flex flex-col gap-5">
-                    <div className="flex flex-col gap-1">
-                      <h3>{project.title}</h3>
-                      <p className="text-secondary">{project.description}</p>
-                      <Link href={`/project/${project.slug}`} underline>
-                        Read case study
-                      </Link>
-                    </div>
-                    <Link href={`/project/${project.slug}`}>
-                      {project.slug === "tracklib" && <TracklibGraphic />}
-                      {project.slug === "bitrefill" && <BitrefillGraphic />}
-                      {project.slug === "trailroutes" && <TrailRoutesGraphic />}
-                    </Link>
-                  </div>
-                </Section>
-              </li>
-            ))}
-          </ul>
-        </div> */}
         <div
           className="flex flex-col items-start gap-4 animate-in"
           style={{ "--index": 3 } as React.CSSProperties}
@@ -90,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     )
-    .filter((_, i) => i < 4)
+    .filter((_, i) => i < 4) // Fetch the latest 4 posts
     .map((post) => pick(post, ["slug", "title", "publishedAt", "image"]));
 
   const projects = allProjects.map((post) =>

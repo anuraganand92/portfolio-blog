@@ -22,77 +22,29 @@ type PostProps = {
 };
 
 export default function Post({ post, related }: PostProps) {
-  const seoTitle = `${post.title} | Anurag Anand`;
-  const seoDesc = `${post.summary}`;
-  const url = `https://anuraganand.vercel.app/blog/${post.slug}`;
   const Component = useMDXComponent(post.body.code);
 
   return (
     <>
       <NextSeo
-        title={seoTitle}
-        description={seoDesc}
-        canonical={url}
+        title={`${post.title} | Anurag Anand`}
+        description={post.summary}
+        canonical={`https://anuraganand.vercel.app/blog/${post.slug}`}
         openGraph={{
-          title: seoTitle,
-          url,
-          description: seoDesc,
+          title: post.title,
+          description: post.summary,
+          url: `https://anuraganand.vercel.app/blog/${post.slug}`,
           images: [
             {
-              url: post.og
-                ? `https://anuraganand.vercel.app${post.og}`
-                : `https://og-image.anuraganand.vercel.app/${encodeURIComponent(
-                    post.title
-                  )}?desc=${encodeURIComponent(seoDesc)}&theme=dark.png`,
+              url: post.og || post.image,
               alt: post.title,
             },
           ],
-          site_name: "Anurag Anand",
-          type: "article",
-          article: {
-            publishedTime: post.publishedAt,
-            modifiedTime: post.updatedAt,
-            authors: ["https://anuraganand.vercel.app"],
-          },
         }}
       />
 
       <div className="flex flex-col gap-20 animate-in">
         <article>
-          {/* {post.slug === "spring-parallax-framer-motion-guide" ? (
-            <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-xl">
-              <div className="absolute inset-0">
-                <Parallax offset={100}>
-                  <Image
-                    src="/blog/spring-parallax-framer-motion-guide/bg.png"
-                    width="2024"
-                    height="1272"
-                    alt="Starry sky"
-                    sizes="(min-width: 480px) 780px, 100vw"
-                    className="w-full min-h-screen"
-                  />
-                </Parallax>
-              </div>
-              <div className="absolute top-1/2 left-1/2 w-[50px] h-[50px] -translate-x-1/2 -translate-y-1/2 md:w-[120px] md:h-[120px]">
-                <Image
-                  src="/blog/spring-parallax-framer-motion-guide/logo.png"
-                  width="324"
-                  height="324"
-                  alt="Framer Motion stylized logo"
-                  sizes="(min-width: 540px) 120px, 50px"
-                />
-              </div>
-            </div>
-          ) : (
-            <Image
-              src={post.image}
-              alt={`${post.title} post image`}
-              width={700}
-              height={350}
-              className="w-[calc(100%+32px)] -ml-4 md:rounded-xl max-w-none border  border-primary"
-              priority
-            />
-          )} */}
           <div className="h-8" />
           <div className="flex flex-col gap-3 animate-in">
             <h1 className="text-2xl font-semibold">{post.title}</h1>
@@ -105,12 +57,10 @@ export default function Post({ post, related }: PostProps) {
             </p>
           </div>
           <div className="h-8" />
-          <div className="prose prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold animate-in">
+          <div className="prose prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold">
             <Component components={MDXComponents} />
           </div>
         </article>
-
-        {/* <LikeButton slug={post.slug} /> */}
 
         <Tags tags={post.tags} />
 
@@ -140,7 +90,7 @@ export default function Post({ post, related }: PostProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: allPosts.map((p) => ({ params: { slug: p.slug } })),
+    paths: allPosts.map((post) => ({ params: { slug: post.slug } })),
     fallback: false,
   };
 };
@@ -148,13 +98,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = allPosts.find((p) => p.slug === params?.slug);
   const related = allPosts
-    /* remove current post */
     .filter((p) => p.slug !== params?.slug)
-    /* Find other posts where tags are matching */
-    .filter((p) => p.tags?.some((tag: string) => post?.tags?.includes(tag)))
-    /* return the first three */
-    .filter((_, i) => i < 3)
-    /* only return what's needed to render the list */
+    .filter((p) => p.tags?.some((tag) => post?.tags?.includes(tag)))
+    .slice(0, 3)
     .map((p) => pick(p, ["slug", "title", "summary", "publishedAt", "image"]));
 
   return {
