@@ -8,6 +8,7 @@ import Workplaces from "components/Workplaces";
 import itsoLogo from "public/projects/itsoLogo.png";
 import synthaxLogo from "public/projects/synthax-logo.png";
 import amazonLogo from "public/projects/amazon-logo.png";
+import appleLogo from "public/projects/apple.png";
 import avatar from "public/avatar.jpg";
 import { ActivityType } from "components/Activity";
 
@@ -19,9 +20,16 @@ export const connectLinks = [
 
 const workplaces = [
   {
+    title: "Software Engineer",
+    description: "Apple",
+    time: "Sep 2025 - Present",
+    imageSrc: appleLogo,
+    link: "https://apple.com",
+  },
+  {
     title: "Applied Scientist Intern",
     description: "Amazon",
-    time: "May 2025 - Present",
+    time: "May 2025 - Aug 2025",
     imageSrc: amazonLogo,
     link: "https://amazon.com",
   },
@@ -53,7 +61,7 @@ const workplaces = [
 
 const seoTitle = "About | Anurag Anand";
 const seoDesc =
-  "Student at IIT Kharagpur and Software Engineer particularly working in applied AI";
+  "Software Engineer at Apple and BTech grad from IIT Kharagpur working in applied AI";
 
 export default function About({
   lastActivity,
@@ -91,16 +99,9 @@ export default function About({
           <Section heading="About me" headingAlignment="right">
             <div className="flex flex-col gap-6">
               <p>
-                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, a student at IIT Kharagpur and a software 
-                engineer specializing in applied AI. I focus on building intelligent, scalable AI solutions, 
-                particularly in LLMs, deep learning, and real-world AI applications. I have worked extensively
-                 with Python, developing, optimizing, and deploying large-scale AI systems.
-              </p>
-              <p>
-                My passion lies in advancing AI research and exploring novel approaches in natural 
-                language processing. I actively engage in experiments and collaborations to push the
-                 boundaries of what AI can achieve, constantly seeking to refine and optimize model 
-                 performance for diverse challenges. 
+                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, software engineer at Apple and a BTech graduate 
+                from IIT Kharagpur. I have worked extensively on developing, optimizing, and deploying large-scale AI systems,
+                and my passion lies in applied AI and high-performance computing.
               </p>
               <p>
                 If you share similar interests or have exciting ideas to discuss, feel free to 
@@ -120,11 +121,9 @@ export default function About({
           <Section heading="Experience" headingAlignment="right">
             <div className="flex flex-col gap-6">
               <p>
-                I am currently interning at <Link href="https://amazon.com">Amazon</Link> as an Applied Scientist.
-                My previous internship was at{" "}
-                <Link href="https://itso.co.jp">ITSO</Link> working on automating corporate solutions. 
-                Before that I interned at <Link href="https://synthax.ai">Synthax</Link>{" "}
-                working on creating AI-based healthcare consultation.{" "}
+                I am currently a Software Engineer at <Link href="https://apple.com">Apple</Link> {" "}
+                and previously interned at <Link href="https://amazon.com">Amazon</Link> as an Applied Scientist.
+                I have interned at two startups as well, working on AI-based solutions.
               </p>
             </div>
           </Section>
