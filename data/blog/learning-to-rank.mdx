@@ -1,0 +1,171 @@
+---
+title: 'Learning To Rank: Pointwise, Pairwise, and Listwise Approaches'
+publishedAt: '2025-04-30'
+summary: ''
+tags: ["Learning To Rank", "Relevance Ranking", "Machine Learning", "Information Retrieval", "NLP", "Search Engines"]
+---
+
+In the realm of information retrieval and search engines, **Learning to Rank (LTR)** is a crucial technique used to optimize the ordering of search results based on their relevance to a given query. Unlike traditional ranking methods that rely on predefined heuristics, LTR leverages machine learning algorithms to learn the best way to rank items from training data.
+
+---
+
+## Background
+
+Ranking is at the heart of search engines, recommender systems, and many NLP tasks. The goal is to order a set of items (documents, products, etc.) so that the most relevant ones appear first for a given query.
+
+Traditional approaches used hand-crafted features and rules. LTR, however, uses supervised learning: given queries, items, and relevance labels, it learns a function to produce an optimal ranking.
+
+---
+
+## Problem Formulation
+
+Given a query $q$ and a set of items $D = \{d_1, d_2, ..., d_n\}$, the task is to learn a scoring function $f(q, d)$ such that sorting $D$ by $f(q, d)$ yields the best possible ranking according to some metric (e.g., NDCG, MAP).
+
+LTR approaches are typically divided into three categories:
+
+---
+
+## 1. Pointwise Approach
+
+Treats ranking as a regression or classification problem on individual items.
+
+**Example:** Predict the relevance score of each document separately, then sort by score.
+
+
+**How it works:**
+Predict the relevance score of each document, then sort by score. Each document is treated independently.
+
+**Pseudocode for Pointwise Loss:**
+```python
+total_loss = 0
+for query, docs in dataset:
+	for doc in docs:
+		pred = model.predict(query, doc)
+		loss = loss_fn(pred, doc.label)  # e.g., MSE or cross-entropy
+		total_loss += loss
+```
+
+**Pseudocode:**
+```python
+for query, docs in dataset:
+	for doc in docs:
+		score = model.predict(query, doc)
+	ranked_docs = sort_by_score(docs)
+```
+
+**Pros:** Simple, leverages standard regression/classification models.
+
+**Cons:** Ignores relative order between items; may not optimize ranking metrics directly.
+
+---
+
+## 2. Pairwise Approach
+
+Considers pairs of items and tries to predict which one should be ranked higher.
+
+**Example:** Given $(d_i, d_j)$, learn to predict if $d_i$ should be ranked above $d_j$.
+
+
+**How it works:**
+Compares pairs of documents and learns which one should be ranked higher for a given query.
+
+**Pseudocode for Pairwise Loss:**
+```python
+total_loss = 0
+for query, docs in dataset:
+	for (doc_i, doc_j) in all_pairs(docs):
+		pred_i = model.predict(query, doc_i)
+		pred_j = model.predict(query, doc_j)
+		# label_i > label_j means doc_i should be ranked higher
+		if doc_i.label > doc_j.label:
+			target = 1
+		elif doc_i.label < doc_j.label:
+			target = -1
+		else:
+			target = 0
+		loss = pairwise_loss_fn(pred_i, pred_j, target)
+		total_loss += loss
+```
+
+**Pseudocode:**
+```python
+for query, docs in dataset:
+	for (doc_i, doc_j) in all_pairs(docs):
+		pred = model.predict(query, doc_i, doc_j)
+		loss = pairwise_loss(pred, label_i, label_j)
+```
+
+**Pros:** Directly models relative order; often improves ranking metrics.
+
+**Cons:** Number of pairs grows quadratically; ignores list context.
+
+---
+
+## 3. Listwise Approach
+
+Optimizes the ranking of the entire list at once, often using ranking metrics as loss functions.
+
+**Example:** Learn to maximize NDCG or MAP for the whole list.
+
+
+**How it works:**
+Optimizes the ranking of the entire list at once, often using ranking metrics as loss functions (e.g., NDCG, MAP).
+
+**Pseudocode for Listwise Loss (e.g., ListNet):**
+```python
+total_loss = 0
+for query, docs in dataset:
+	preds = model.predict(query, docs)  # list of predicted scores
+	labels = [doc.label for doc in docs]
+	loss = listwise_loss_fn(preds, labels)  # e.g., cross-entropy between permutations
+	total_loss += loss
+```
+
+**Pseudocode:**
+```python
+for query, docs in dataset:
+	scores = model.predict(query, docs)
+	loss = listwise_loss(scores, labels)
+```
+
+**Pros:** Directly optimizes ranking metrics; considers full context.
+
+**Cons:** More complex; may require differentiable approximations of ranking metrics.
+
+---
+
+## Common Algorithms
+
+- **RankNet** (pairwise, neural network-based)
+- **LambdaRank / LambdaMART** (gradient boosting, listwise)
+- **ListNet, ListMLE** (listwise, probabilistic)
+- **Support Vector Machines for Ranking (RankSVM)**
+
+---
+
+## Practical Notes
+
+- **Feature Engineering:** Query-document features are crucial (e.g., BM25, TF-IDF, embeddings).
+- **Evaluation Metrics:** NDCG, MAP, Precision@k, MRR are standard.
+- **Data Imbalance:** Most queries have few relevant items; sampling strategies help.
+- **Scalability:** Listwise methods can be computationally intensive for large lists.
+
+---
+
+## Applications
+
+- Web search engines (Google, Bing, etc.)
+- Product and job recommendations
+- Question answering and dialogue systems
+- Ad ranking and sponsored search
+
+---
+
+## References
+
+1. Liu, T.-Y. (2009). Learning to Rank for Information Retrieval. Foundations and Trends in Information Retrieval.
+2. Burges, C. J. C. (2010). From RankNet to LambdaRank to LambdaMART: An Overview. Microsoft Research.
+3. Cao, Z., Qin, T., Liu, T.-Y., Tsai, M.-F., & Li, H. (2007). Learning to Rank: From Pairwise Approach to Listwise Approach. ICML.
+4. Li, H. (2011). A Short Introduction to Learning to Rank. IEICE Transactions.
+
+
