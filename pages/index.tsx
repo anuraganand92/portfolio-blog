@@ -44,17 +44,8 @@ export default function Home({ posts, projects }: HomeProps) {
             style={{ "--index": 1 } as React.CSSProperties}
           >
             I am a software engineer at <Link href="https://apple.com">Apple</Link> with experience particularly in NLP and LLMs, with strong interest in
-            applied AI and high-performance computing. I am a BTech graduate from IIT Kharagpur.
-          </p>
-          <br/>
-          <p
-            className="text-secondary animate-in"
-            style={{ "--index": 1 } as React.CSSProperties}
-          >
-            I have previously interned at <Link href="https://amazon.com">Amazon</Link> as an Applied Scientist, along with two startups:{" "}
-            <Link href="https://itso.co.jp">ITSO</Link> working on automating corporate solutions, and{" "}
-            <Link href="https://synthax.ai">Synthax</Link>{" "}
-            working on creating AI-based healthcare consultation.{" "}
+            applied AI and high-performance computing. I am a B.Tech. graduate from <Link href="https://iitkgp.ac.in">IIT Kharagpur</Link>, and have previously interned at {' '}
+            <Link href="https://amazon.com">Amazon</Link> as an Applied Scientist.
           </p>
         </div>
         <div className="flex flex-col gap-12 md:gap-4">

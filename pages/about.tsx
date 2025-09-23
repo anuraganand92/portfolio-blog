@@ -76,7 +76,7 @@ export default function About({
         openGraph={{
           title: seoTitle,
           description: seoDesc,
-          url: `https://anuraganand.vercel.app/about/`,
+          url: `https://anuraganand.dev/about`,
           site_name: "Anurag Anand",
         }}
         twitter={{
@@ -84,14 +84,14 @@ export default function About({
         }}
       />
       <div className="flex flex-col gap-16 md:gap-24">
-        <div className="-mb-8 sm:hidden animate-in">
+        {/* <div className="-mb-8 sm:hidden animate-in">
           <Image
             src={avatar}
             width={48}
             height={48}
             alt="avatar of Anurag Anand"
           />
-        </div>
+        </div> */}
         <div
           className="flex flex-col gap-16 animate-in md:gap-12"
           style={{ "--index": 2 } as React.CSSProperties}
@@ -99,8 +99,8 @@ export default function About({
           <Section heading="About me" headingAlignment="right">
             <div className="flex flex-col gap-6">
               <p>
-                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, software engineer at Apple and a BTech graduate 
-                from IIT Kharagpur. I have worked extensively on developing, optimizing, and deploying large-scale AI systems,
+                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, software engineer at Apple and a B.Tech. graduate
+                from <Link href="https://iitkgp.ac.in">IIT Kharagpur</Link>. I have worked extensively on developing, optimizing, and deploying large-scale AI systems,
                 and my passion lies in applied AI and high-performance computing.
               </p>
               <p>
@@ -129,7 +129,7 @@ export default function About({
           </Section>
           
           <Section heading="" headingAlignment="right">
-            <div className="flex flex-col w-full gap-8">
+            <div className="flex flex-col w-full gap-10">
               {/* <p>
                 {new Date().getFullYear() - 2025}+ years of experience working
                 in engineering.
