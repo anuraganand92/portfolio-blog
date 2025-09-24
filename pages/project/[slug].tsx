@@ -16,7 +16,7 @@ type ProjectProps = {
 export default function Project({ project, rest }: ProjectProps) {
   const seoTitle = `${project.title} Case Study | Anurag Anand`;
   const seoDesc = `${project.description}`;
-  const url = `https://anuraganand.vercel.app/project/${project.slug}`;
+  const url = `https://anuraganand.dev/project/${project.slug}`;
   const Component = useMDXComponent(project.body.code);
 
   return (
@@ -34,7 +34,7 @@ export default function Project({ project, rest }: ProjectProps) {
           description: seoDesc,
           images: [
             {
-              url: `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(
+              url: `https://anuraganand.dev/${encodeURIComponent(
                 project.title
               )}?desc=${encodeURIComponent("Case study")}&theme=dark.png`,
               alt: project.title,

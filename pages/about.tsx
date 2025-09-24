@@ -42,7 +42,7 @@ const workplaces = [
   },
   {
     title: "Software Engineer Intern",
-    description: "Synthax AI",
+    description: "Synthax",
     time: "Nov 2023 - Dec 2023",
     imageSrc: synthaxLogo,
     link: "https://synthax.ai",
@@ -61,7 +61,7 @@ const workplaces = [
 
 const seoTitle = "About | Anurag Anand";
 const seoDesc =
-  "Software Engineer at Apple and BTech grad from IIT Kharagpur working in applied AI";
+  "Software Engineer at Apple and BTech grad from IIT Kharagpur working in applied AI. Former Applied Scientist Intern at Amazon. NLP, Secure Machine Learning, ML, LLMs, AI, Tech, high performance computing.";
 
 export default function About({
   lastActivity,

@@ -29,11 +29,11 @@ export default function Post({ post, related }: PostProps) {
       <NextSeo
         title={`${post.title} | Anurag Anand`}
         description={post.summary}
-        canonical={`https://anuraganand.vercel.app/blog/${post.slug}`}
+        canonical={`https://anuraganand.dev/blog/${post.slug}`}
         openGraph={{
           title: post.title,
           description: post.summary,
-          url: `https://anuraganand.vercel.app/blog/${post.slug}`,
+          url: `https://anuraganand.dev/blog/${post.slug}`,
           images: [
             {
               url: post.og || post.image,

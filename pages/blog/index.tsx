@@ -9,7 +9,7 @@ import { IconSearch } from "components/Icons";
 
 const seoTitle = "Blog | Anurag";
 const seoDesc =
-  "I write about deep level technical stuff, mostly in software engineering and applied AI";
+  "I write about deep level technical stuff, mostly in software engineering and applied AI. Software Engineer at Apple and B.Tech. at IIT Kharagpur. NLP, Secure Machine Learning, ML, LLMs, AI, Tech, high performance computing.";
 
 type BlogProps = {
   posts: Post[];
@@ -31,7 +31,7 @@ export default function Blog({ posts }: BlogProps) {
         description={seoDesc}
         openGraph={{
           title: seoTitle,
-          url: `https://anuraganand.vercel.app/blog/`,
+          url: `https://anuraganand.dev/blog/`,
           description: seoDesc,
           site_name: "Anurag Anand",
         }}

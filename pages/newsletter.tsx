@@ -20,7 +20,7 @@ export default function NewsletterPage() {
         description={seoDesc}
         openGraph={{
           title: seoTitle,
-          url: `https://anuraganand.vercel.app/newsletter/`,
+          url: `https://anuraganand.dev/newsletter/`,
           description: seoDesc,
           site_name: "Anurag Anand",
         }}
