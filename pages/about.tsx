@@ -61,7 +61,7 @@ const workplaces = [
 
 const seoTitle = "About | Anurag Anand";
 const seoDesc =
-  "Software Engineer at Apple and BTech grad from IIT Kharagpur working in applied AI. Former Applied Scientist Intern at Amazon. NLP, Secure Machine Learning, ML, LLMs, AI, Tech, high performance computing.";
+  "Software Engineer at Apple and BTech grad from IIT Kharagpur working in applied AI. Former Applied Scientist Intern at Amazon. GitHub: anuraganand92. NLP, Secure Machine Learning, ML, LLMs, AI, Tech, high performance computing.";
 
 export default function About({
   lastActivity,

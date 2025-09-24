@@ -9,7 +9,7 @@ import { IconSearch } from "components/Icons";
 
 const seoTitle = "Blog | Anurag";
 const seoDesc =
-  "I write about deep level technical stuff, mostly in software engineering and applied AI. Software Engineer at Apple and B.Tech. at IIT Kharagpur. NLP, Secure Machine Learning, ML, LLMs, AI, Tech, high performance computing.";
+  "I write about deep level technical stuff, mostly in software engineering and applied AI. Software Engineer at Apple and B.Tech. at IIT Kharagpur. GitHub: anuraganand92 NLP, Secure Machine Learning, ML, LLMs, AI, Tech, high performance computing, Java, Python, C++, Big Data.";
 
 type BlogProps = {
   posts: Post[];
