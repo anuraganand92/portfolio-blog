@@ -99,7 +99,7 @@ export default function About({
           <Section heading="About me" headingAlignment="right">
             <div className="flex flex-col gap-6">
               <p>
-                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, software engineer at Apple and a B.Tech. graduate
+                <em className="font-semibold">Hi there!</em>&nbsp; I’m Anurag, software engineer at <Link href="https://apple.com">Apple</Link> and a B.Tech. graduate
                 from <Link href="https://iitkgp.ac.in">IIT Kharagpur</Link>. I have worked extensively on developing, optimizing, and deploying large-scale AI systems,
                 and my passion lies in applied AI and high-performance computing.
               </p>
