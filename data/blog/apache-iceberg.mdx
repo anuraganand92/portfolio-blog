@@ -1,0 +1,112 @@
+---
+title: 'Apache Iceberg: Revolutionizing Big Data Table Formats'
+publishedAt: '2026-03-01'
+summary: 'An in-depth guide to Apache Iceberg, its architecture, and why it is replacing Hive as the modern standard for data lakes and lakehouses.'
+tags: ["Data Engineering", "Apache Iceberg", "Big Data", "Data Lake", "Spark"]
+---
+
+In the world of Big Data, the way we store, manage, and query massive datasets has evolved significantly. For years, the **Apache Hive** table format was the de-facto standard for data lakes. However, as data scales to petabytes and real-time processing becomes crucial, Hive's directory-based approach has shown its limitations.
+
+Enter **Apache Iceberg**, an open table format for huge analytic datasets that completely reimagines how metadata and data files are tracked, bringing SQL-like reliability and performance to the data lake.
+
+---
+
+## The Problem with Hive
+
+Before diving into Iceberg, it's essential to understand the pain points it was built to solve. Traditional Hive tables rely on a **directory-based** tracking system. A table is essentially a folder in cloud storage (like Amazon S3 or HDFS), and partitions are sub-folders.
+
+This approach creates several massive problems:
+1. **Inefficient Listing:** To find the data files for a query, the engine must list directories. At petabyte scale, recursively listing S3 buckets is incredibly slow and expensive.
+2. **No Safe Concurrent Writes:** If two jobs write to the table at the same time, or if a read happens during a write, you can get dirty reads or corrupted data. There are no true ACID transactions.
+3. **Brittle Schema Evolution:** Renaming a column or changing a data type often requires completely rewriting the underlying data files.
+4. **Partitioning Nightmares:** If you change your partition granularity (e.g., from daily to hourly), you have to create a new table and copy everything over.
+
+---
+
+## What is Apache Iceberg?
+
+Originally developed at Netflix, **Apache Iceberg** is an open-source table format that tracks individual data files rather than directories. It sits between your compute engines (like Apache Spark, Trino, Flink, or Presto) and your storage layer (S3, GCS, ABS), providing a unified, reliable abstraction.
+
+Because Iceberg tracks datasets at the **file level**, compute engines no longer have to list directories to plan queries. They simply read Iceberg's metadata tree to know exactly which files to scan.
+
+---
+
+## The Iceberg Architecture
+
+Iceberg's power comes from its elegant metadata architecture, which is broken down into three main components:
+
+### 1. The Catalog
+The Catalog is the highest level of the architecture. It stores the pointer to the **current metadata file** for a given table. When a compute engine wants to read an Iceberg table, it asks the Catalog: *"Where is the current metadata for this table?"*
+
+### 2. The Metadata Layer
+This layer consists of a hierarchical tree of metadata files:
+- **Metadata Files (`v1.metadata.json`):** Tracks the schema, partitioning spec, and a snapshot timeline of the table. Every time you write to the table, a new metadata file is created, pointing to a new Snapshot.
+- **Manifest Lists:** A Snapshot points to a Manifest List, which tracks multiple Manifest Files. It contains high-level statistics (min/max values, partitions included) to quickly eliminate entire groups of files during a query.
+- **Manifest Files:** These track the actual underlying data files. They store column-level min/max bounds, null counts, and file paths.
+
+### 3. The Data Layer
+The actual data files, typically stored in **Parquet**, **ORC**, or **Avro** formats.
+
+---
+
+## Key Features & Benefits
+
+### 1. ACID Transactions
+Iceberg uses optimistic concurrency control. You can safely run `UPDATE`, `DELETE`, and `MERGE INTO` operations on massive data lakes without locking the entire table. Readers will always see a consistent snapshot of the data.
+
+### 2. Hidden Partitioning
+In Hive, if data is partitioned by `event_date`, you have to explicitly include `WHERE event_date = '2025-01-01'` in your queries, even if you are already filtering by a timestamp column like `WHERE event_timestamp >= ...`. 
+
+Iceberg handles partitioning **under the hood**. You provide the timestamp column, and Iceberg automatically translates it into the correct partition filters, saving analysts from writing error-prone queries.
+
+### 3. Schema Evolution
+You can reliably add, rename, reorder, or drop columns. Iceberg uses unique IDs to track columns rather than their names or positions. Renaming a column is simply a metadata operation—no data rewriting is required!
+
+### 4. Partition Evolution
+You can change a table's partition layout without rewriting old data. For example, you can transition a table from monthly partitioning to daily partitioning. Queries will seamlessly scan both the old monthly partitions and the new daily partitions efficiently.
+
+### 5. Time Travel & Rollbacks
+Because Iceberg maintains a history of snapshots, you can query the table exactly as it looked at a specific timestamp in the past. If a bad ETL job corrupts the table, you can rollback to the previous snapshot instantaneously.
+
+```sql
+-- Query data as of a specific snapshot ID
+SELECT * FROM my_table TIMESTAMP AS OF 1704067200000;
+```
+
+---
+
+## Example Usage with Spark
+
+Integrating Iceberg with PySpark is straightforward. Once your Spark session is configured with the Iceberg catalog, it feels just like standard SQL.
+
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions") \
+    .config("spark.sql.catalog.my_catalog", "org.apache.iceberg.spark.SparkCatalog") \
+    .config("spark.sql.catalog.my_catalog.type", "hadoop") \
+    .config("spark.sql.catalog.my_catalog.warehouse", "s3a://my-bucket/iceberg/") \
+    .getOrCreate()
+
+# Create a table
+spark.sql("""
+CREATE TABLE my_catalog.db.events (
+    id BIGINT,
+    data STRING,
+    event_ts TIMESTAMP
+) USING iceberg
+PARTITIONED BY (days(event_ts))
+""")
+
+# Insert Data
+spark.sql("INSERT INTO my_catalog.db.events VALUES (1, 'login', current_timestamp())")
+```
+
+---
+
+## Conclusion
+
+Apache Iceberg represents a paradigm shift in data engineering. By moving metadata tracking from the directory level down to the individual file level, it completely solves the performance and consistency issues that plagued legacy Hadoop and Hive environments. 
+
+As the foundation for modern **Data Lakehouses**, Iceberg enables warehouses like Snowflake, analytics engines like Trino, and processing frameworks like Spark to effectively share and transact on the same massive datasets without friction.
