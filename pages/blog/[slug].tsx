@@ -2,7 +2,7 @@ import { pick } from "@contentlayer/client";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { NextSeo } from "next-seo";
+import { NextSeo, ArticleJsonLd } from "next-seo";
 import { useEffect, useState } from "react";
 
 import { formatDate } from "lib/formatdate";
@@ -31,16 +31,41 @@ export default function Post({ post, related }: PostProps) {
         description={post.summary}
         canonical={`https://anuraganand.dev/blog/${post.slug}`}
         openGraph={{
+          type: "article",
+          article: {
+            publishedTime: post.publishedAt,
+            modifiedTime: post.updatedAt || post.publishedAt,
+            authors: ["https://anuraganand.dev"],
+            tags: post.tags,
+          },
           title: post.title,
           description: post.summary,
           url: `https://anuraganand.dev/blog/${post.slug}`,
           images: [
             {
-              url: post.og || post.image,
+              url: post.og || post.image || "https://anuraganand.dev/og.png",
               alt: post.title,
             },
           ],
         }}
+      />
+      <ArticleJsonLd
+        type="BlogPosting"
+        url={`https://anuraganand.dev/blog/${post.slug}`}
+        title={post.title}
+        images={[post.og || post.image || "https://anuraganand.dev/og.png"]}
+        datePublished={post.publishedAt}
+        dateModified={post.updatedAt || post.publishedAt}
+        authorName={[
+          {
+            name: "Anurag Anand",
+            url: "https://anuraganand.dev",
+          },
+        ]}
+        publisherName="Anurag Anand"
+        publisherLogo="https://anuraganand.dev/og.png"
+        description={post.summary}
+        isAccessibleForFree={true}
       />
 
       <div className="flex flex-col gap-20 animate-in">
@@ -61,6 +86,10 @@ export default function Post({ post, related }: PostProps) {
             <Component components={MDXComponents} />
           </div>
         </article>
+
+        <div className="flex justify-center py-8">
+          <LikeButton slug={post.slug} />
+        </div>
 
         <Tags tags={post.tags} />
 

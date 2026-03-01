@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import { allPosts, allProjects, Post, Project } from ".contentlayer/generated";
+import { SocialProfileJsonLd } from "next-seo";
 import { pick } from "@contentlayer/client";
 
 import Link from "components/Link";
@@ -25,19 +26,28 @@ export const connectLinks = [
 export default function Home({ posts, projects }: HomeProps) {
   return (
     <>
+      <SocialProfileJsonLd
+        type="Person"
+        name="Anurag Anand"
+        url="https://anuraganand.dev"
+        sameAs={[
+          "https://www.linkedin.com/in/anurag-anand-929471250/",
+          "https://github.com/anuraganand92",
+        ]}
+      />
       <div className="flex flex-col gap-12 md:gap-16">
         <div>
           <h1 className="animate-in text-4xl">Hi! I&apos;m Anurag</h1>
-            <br/>
-            <h2 className="animate-in text-2xl">
+          <br />
+          <h2 className="animate-in text-2xl">
             Software Engineer at Apple{" "}
             <Image
               src={appleLogo}
               alt="Apple Logo"
               className="inline-block w-6 h-6 rounded-full align-middle"
             />
-            </h2>
-          <br/>
+          </h2>
+          <br />
 
           <p
             className="text-secondary animate-in"
@@ -51,13 +61,13 @@ export default function Home({ posts, projects }: HomeProps) {
         <div className="flex flex-col gap-12 md:gap-4">
 
           <h2 className="animate-in text-xl">Connect</h2>
-            <ul className="flex gap-8 animated-list">
-              {connectLinks.map((link) => (
-                <li className="transition-opacity" key={link.label}>
-                  <Link href={link.href}>{link.label}</Link>
-                </li>
-              ))}
-            </ul>
+          <ul className="flex gap-8 animated-list">
+            {connectLinks.map((link) => (
+              <li className="transition-opacity" key={link.label}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
         <div
           className="flex flex-col items-start gap-4 animate-in"

@@ -10,6 +10,7 @@ export default class MyDocument extends Document {
             content="RJQJipgMnyEfg3XESXsr7jXnVDOaAr1xtlCGRaoTQSo"
           />
           <link href="https://github.com/anuraganand92" rel="me" />
+          <link rel="icon" href="data:," />
         </Head>
         <body>
           <Main />

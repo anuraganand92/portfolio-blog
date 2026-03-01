@@ -16,9 +16,23 @@ export default function LikeButton({ slug }: { slug: string }) {
   useEffect(() => setMounted(true), []);
 
   const onLike = async () => {
-    localStorage.setItem(slug, "true");
-    mutate(`/api/likes?slug=${slug}`, { ...data, likes: likes + 1 }, false);
-    await fetch(`/api/likes?slug=${slug}`, { method: "POST" });
+    if (liked) {
+      localStorage.setItem(slug, "false");
+      mutate(`/api/likes?slug=${slug}`, { ...data, likes: Math.max(0, likes - 1) }, false);
+      await fetch(`/api/likes?slug=${slug}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "unlike" })
+      });
+    } else {
+      localStorage.setItem(slug, "true");
+      mutate(`/api/likes?slug=${slug}`, { ...data, likes: likes + 1 }, false);
+      await fetch(`/api/likes?slug=${slug}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "like" })
+      });
+    }
   };
 
   if (!mounted) return null;
@@ -26,10 +40,9 @@ export default function LikeButton({ slug }: { slug: string }) {
   return (
     <div className="flex justify-center">
       <button
-        disabled={liked}
         onClick={onLike}
         type="button"
-        className="flex items-center justify-center h-10 gap-2 overflow-hidden text-white transition-transform bg-orange-400 rounded-full like-button hover:cursor-default active:scale-95"
+        className="flex items-center justify-center h-10 gap-2 overflow-hidden text-white transition-transform bg-orange-400 rounded-full like-button active:scale-95"
       >
         <Halo
           className="flex items-center justify-center gap-2 px-4"

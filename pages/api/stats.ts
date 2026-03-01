@@ -1,17 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import faunadb from "faunadb";
 import { pick } from "@contentlayer/client";
 import { getMentionsForSlug } from "lib/webmentions";
 import { allPosts } from ".contentlayer/generated";
+import { getDb } from "../../lib/db";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const q = faunadb.query;
-  const client = new faunadb.Client({
-    secret: process.env.FAUNA_SECRET_KEY || "",
-  });
+  const db = getDb();
 
   const posts = allPosts.map((post) =>
     pick(post, ["slug", "title", "publishedAt", "image", "tags", "summary"])
@@ -26,29 +23,16 @@ export default async function handler(
         // Fetch webmentions
         const numberOfmentions = await getMentionsForSlug(post.slug);
 
-        // Fetch fauna likes
-        type documentType = { ref: string; data: { likes: number } };
-        const likesDocument = (await client.query(
-          q.Get(q.Match(q.Index("likes_by_slug"), post.slug))
-        )) as documentType;
-        const totalLikes =
-          numberOfmentions > 0
-            ? likesDocument.data.likes + numberOfmentions
-            : likesDocument.data.likes;
+        const faunaLikes = db.likes?.[post.slug] || 0;
+        const totalLikes = faunaLikes + (numberOfmentions || 0);
 
-        // Fetch fauna hits
-        const hitsDocument = (await client.query(
-          q.Get(q.Match(q.Index("hits_by_slug"), post.slug))
-        )) as {
-          ref: string;
-          data: { hits: number };
-        };
+        const faunaViews = db.hits?.[post.slug] || 0;
 
         return {
           ...post,
           id: post.slug,
           likes: totalLikes,
-          views: hitsDocument.data.hits,
+          views: faunaViews,
         };
       })
   );
